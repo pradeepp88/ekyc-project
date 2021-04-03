@@ -20,8 +20,8 @@ The system uses only the SIN as the identity for each user since SIN is unique. 
 •	If there is mismatch in address – address is updated and application is approved.
 
 
-## State Machine Diagram
-![image](https://user-images.githubusercontent.com/45354395/113464786-5d85f080-93fd-11eb-9f30-977387b14a85.png)
+## Process Flow Diagram
+![image](https://user-images.githubusercontent.com/45354395/113465102-7d1e1880-93ff-11eb-8873-aabc3c3ec6fc.png)
 
 
 ## ChainCode Operations
