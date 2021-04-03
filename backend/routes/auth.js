@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../validation')
 
-
 // REGISTER
 /*
     Register a user. Endpoint => http://localhost:8080/api/user/register
@@ -28,14 +27,14 @@ router.post('/register', async (req, res) => {
 
     // create user object from request body
     const user = new User({
-        name: req.body.name,
+        //name: req.body.name,
         email: req.body.email,
         password: hashPassword,
     });
     try {
         // save new user to db
         const savedUser = await user.save();
-        console.log(`new user saved successfully - id: ${user._id}, name: ${user.name}, email: ${user.email}`);
+        console.log(`new user saved successfully - id: ${user._id}, email: ${user.email}`);
 
         // Create and assign JWT token
         createAndSendToken(savedUser, res);
@@ -67,11 +66,19 @@ router.post('/login', async (req, res) => {
     console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
 })
 
+router.post('/viewData', async (req, res) => {
+
+    // Create and assign JWT token
+    createAndSendToken(user, res);
+
+    console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
+})
+
 module.exports = router;
 
 function createAndSendToken(user, res) {
     const token = jwt.sign({ _id: user._id, _name: user.name }, process.env.TOKEN_SECRET);
-    console.log(`token assigned to user successfully - id: ${user._id}, name: ${user.name}`);
+    console.log(`token assigned to user successfully - id: ${user._id}`);
 
     console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
 
